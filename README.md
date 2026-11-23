@@ -26,6 +26,16 @@ You need to deploy the functions to Netlify:
 
 Then, in the **Data Compression Service** in Bandwidth Hero extension, add `https://your-netlify-domain.netlify.app/api/index`, and you are good to go.
 
+## Deployment — Vercel (free Hobby plan)
+
+This repo also works on Vercel, no card needed for the Hobby plan:
+
+1. Import this repo at [vercel.com/new](https://vercel.com/new) (sign in with GitHub).
+2. Leave the build settings as-is (no build command, no environment variables needed) and deploy.
+3. In the **Data Compression Service** in Bandwidth Hero extension, add `https://your-project.vercel.app/api/index`.
+
+Notes: `api/index.js` is a thin wrapper that adapts the Netlify-style handler in `functions/index.js` to Vercel's `(req, res)` functions — the compression logic itself is shared. Vercel Hobby limits the response body to 4.5 MB, so original images larger than that which bypass compression will fail; compressed images are normally well under the limit.
+
 <!-- READ THIS ARTICLE LATER AdityaG
 Check out [this guide](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-16-04)
 on how to setup Node.js on Ubuntu. 
